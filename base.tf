@@ -2,7 +2,7 @@ terraform {
   required_version = ">= 0.12"
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "~>2.0"
     }
   }
@@ -18,13 +18,13 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "storage" {
-  name = var.app_name
+  name     = var.app_name
   location = var.location
 
   tags = {
     description = var.description
     environment = var.environment
-    owner = var.owner
+    owner       = var.owner
   }
 }
 
@@ -32,8 +32,8 @@ resource "azurerm_app_service_plan" "furniture-service-plan" {
   name                = "furniture-${var.app_name}-service-plan"
   location            = azurerm_resource_group.storage.location
   resource_group_name = azurerm_resource_group.storage.name
-  kind = "Linux"
-  reserved = true
+  kind                = "Linux"
+  reserved            = true
 
   sku {
     tier = "Free"
@@ -43,13 +43,13 @@ resource "azurerm_app_service_plan" "furniture-service-plan" {
   tags = {
     description = var.description
     environment = var.environment
-    owner = var.owner
+    owner       = var.owner
   }
 }
 
 resource "azurerm_app_service" "furniture-app-service" {
-  name = "furniture-${var.app_name}-service"
-  location = azurerm_resource_group.storage.location
+  name                = "furniture-${var.app_name}-service"
+  location            = azurerm_resource_group.storage.location
   resource_group_name = azurerm_resource_group.storage.name
   app_service_plan_id = azurerm_app_service_plan.furniture-service-plan.id
 
@@ -62,9 +62,22 @@ resource "azurerm_app_service" "furniture-app-service" {
   tags = {
     description = var.description
     environment = var.environment
-    owner = var.owner
+    owner       = var.owner
   }
 }
 
+resource "azurerm_storage_account" "tf-state" {
+  name                     = "fhistoragetfstatestorage"
+  location                 = azurerm_resource_group.storage.location
+  resource_group_name      = azurerm_resource_group.storage.name
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
+
+  tags = {
+    description = var.description
+    environment = var.environment
+    owner       = var.owner
+  }
+}
 
 

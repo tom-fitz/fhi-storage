@@ -1,34 +1,37 @@
 package furniture
 
 import (
-	"github.com/shopspring/decimal"
 	"time"
+
+	"github.com/shopspring/decimal"
 )
 
 type (
-	FurnitureID string
+	// ID Unique id for the furniture aggregate
+	ID string
 
 	CategoryID string
 
 	HouseID string
 
-	FurnitureImageID string
+	// ImageID unique image id for an image associated with a furniture
+	ImageID string
 
 	Furniture struct {
-		ID               FurnitureID
-		Name             string
-		UID              string
-		CategoryID       CategoryID
-		Cost             decimal.Decimal
-		PurchasedFrom    string
-		DatePurchased    time.Time
-		HouseID          HouseID
-		Turns            int
-		Width            string
-		Height           string
-		FurnitureImageID FurnitureImageID
-		IsFurnitureSet   bool
-		Quantity         int
-		Notes            string
+		ID             ID
+		Name           string
+		UID            string
+		CategoryID     CategoryID
+		Cost           decimal.Decimal
+		PurchasedFrom  string
+		DatePurchased  time.Time
+		HouseID        HouseID
+		Turns          int
+		Width          string
+		Height         string
+		ImageID        ImageID
+		IsFurnitureSet bool
+		Quantity       int
+		Notes          string
 	}
 )
