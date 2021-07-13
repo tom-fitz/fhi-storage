@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"storage/furniture"
+
+	"github.com/tom-fitz/fhi-storage/storage/furniture"
 )
 
 func main() {
