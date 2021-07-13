@@ -10,11 +10,11 @@ terraform {
 provider "azurerm" {
   environment = "public"
   features {}
-
-  subscription_id = "d02fcefd-b6b5-4e63-ac75-0595cd84e8c7"
-  client_id       = "c39340d4-ecc5-4c2a-8336-b154ea0bf005"
-  client_secret   = "djqCt2S1b3KQ_uF.ICkbJPLQ_9C97Qahp0"
-  tenant_id       = "61812914-4959-44f0-84b1-7035306e7671"
+  // terraform won't run correctly without the below configured secretes and ids
+  subscription_id = ""
+  client_id       = ""
+  client_secret   = ""
+  tenant_id       = ""
 }
 
 resource "azurerm_resource_group" "storage" {

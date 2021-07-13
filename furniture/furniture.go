@@ -17,6 +17,7 @@ type (
 	// ImageID unique image id for an image associated with a furniture
 	ImageID string
 
+	// Furniture ...
 	Furniture struct {
 		ID             ID
 		Name           string
