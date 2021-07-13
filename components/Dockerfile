@@ -10,7 +10,7 @@ WORKDIR /storage
 #COPY furniture furniture
 COPY . .
 
-RUN go mod download
+#RUN go mod download
 
 COPY main.go go.* /storage/
 
